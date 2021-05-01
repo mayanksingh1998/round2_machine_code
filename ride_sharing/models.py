@@ -12,6 +12,7 @@ class Driver(models.Model):
 
     def to_json(self):
         return{
+            'driver_id': self.id,
             'name': self.name,
             'phone': self.phone,
             'status': self.status
@@ -30,6 +31,7 @@ class Ride(models.Model):
 
     def to_json(self):
         return {
+            'ride_id': self.id,
             'pickup_location': self.pickup_location,
             'drop_location': self.drop_location,
             'price': self.price,
@@ -38,4 +40,4 @@ class Ride(models.Model):
 
 class RideDriver(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
-    rider = models.ForeignKey(Ride, on_delete=models.CASCADE)
+    ride = models.ForeignKey(Ride, on_delete=models.CASCADE)

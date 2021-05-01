@@ -12,6 +12,7 @@ class DriverHelper(object):
         phone = kwargs.get(constants.DRIVER.PHONE)
         driver_dict = {constants.DRIVER.NAME: name,
                        constants.DRIVER.PHONE: phone}
+        print(driver_dict)
         try:
             driver = Driver.objects.create(**driver_dict)
             return driver.to_json()

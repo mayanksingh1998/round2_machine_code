@@ -29,7 +29,7 @@ class RideHelper(object):
     @classmethod
     def is_ride_exist(cls, ride_id):
         try:
-            ride = Ride.objects.get(id=ride_id).exists()
+            ride = Ride.objects.filter(id=ride_id).exists()
             return True
         except Ride.DoesNotExist:
             raise Exception("ride does not exist")
@@ -39,6 +39,7 @@ class RideHelper(object):
     @classmethod
     def get_rides(cls, **kwargs):
         filters = {}
+        ride_list = []
         pickup_location = kwargs.get(constants.RIDES.PICK_UP_LOCATION)
         drop_location = kwargs.get(constants.RIDES.DROP_LOCATION)
         created_on = kwargs.get(constants.RIDES.CREATED_ON)
@@ -56,5 +57,8 @@ class RideHelper(object):
 
         try:
             rides = Ride.objects.filter(**filters)
+            for ride in rides:
+                ride_list.append(ride.to_json())
+            return ride_list
         except:
             raise Exception("unable to get")

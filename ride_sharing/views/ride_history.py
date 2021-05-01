@@ -32,8 +32,9 @@ class RideHistory(APIView):
             constants.RIDES.CREATED_ON: created_on
         }
 
-    def post(self, request):
+    def get(self, request):
         req_params = self.validate_and_request_params(request)
+        print(req_params)
         try:
             rides = self.rides_helper.get_rides(**req_params)
         except Exception as e:
@@ -41,6 +42,6 @@ class RideHistory(APIView):
             raise APIException("unable to add")
 
         else:
-            return JsonResponse({constants.DRIVER.DRIVER: driver, 'message': 'driver added successfully'})
+            return JsonResponse({'rides': rides, 'message': 'success'})
 
 
