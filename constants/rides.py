@@ -5,7 +5,7 @@ class Status(object):
 STATUS = Status()
 
 class Rides(object):
-    PICK_UP_LOCATION = 'pick_up_location'
+    PICK_UP_LOCATION = 'pickup_location'
     DROP_LOCATION = 'drop_location'
 
     RIDE_ID = 'ride_id'
